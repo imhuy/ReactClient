@@ -25,6 +25,9 @@ export default function AboutPage(props) {
 
   return (
     <>
+      <Head>
+        <title>{obj.title}</title>
+      </Head>
       <Header />
       <Container maxWidth='md' style={{ backgroundColor: '#fff' }} >
         <div>

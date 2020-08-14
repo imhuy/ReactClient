@@ -4,17 +4,38 @@ import InfiniteScroll from 'react-infinite-scroller';
 import { fetchApi } from '../lib/api';
 import Header from '../components/Header';
 import styles from '../../styles';
- 
-// import styles from './styles';
 import Link from 'next/link';
 export default function Home({ allPosts }) {
-  console.log('responjson')
-  console.log(allPosts)
+
+
+  const [isLoadmore, setLoadmore] = useState(true)
+  const [data, setData] = useState(allPosts)
+
+  useEffect(() => {
+
+    loadmore();
+  }, ['iddd']);
+
+  async function loadmore(page) {
+    var rs = await fetch(`http://localhost/post/${page}/6`);
+
+    console.log('fetch424243')
+    console.log(allPosts)
+
+    console.log('isLoadmore32342423')
+    console.log(isLoadmore)
+    var itemResponse = await rs.json();
+    if (itemResponse === null || itemResponse.length === 0) {
+      setLoadmore(false)
+    }
+    setData(allPosts.concat(itemResponse))
+    // this.setState({ data: this.state.data.concat(itemResponse) })
+  }
+
+
   return (
     <React.Fragment>
-
       <main style={styles.main}>
-
         <div style={styles.content} >
           <Header />
           <div style={styles.heroContent}>
@@ -51,7 +72,7 @@ export default function Home({ allPosts }) {
             {/* End hero unit */}
 
             <Grid container spacing={6}>
-              {allPosts.map((item, i) =>
+              {data.map((item, i) =>
 
                 <Link key={i} as={`/posts/${item.slug}`} href="/posts/[slug]">
                   <Grid item xs={12} sm={6} md={4}>
@@ -72,11 +93,20 @@ export default function Home({ allPosts }) {
                       </div>
                     </Paper>
 
-
                   </Grid>
                 </Link>
-
               )}
+            </Grid>
+
+            <Grid container spacing={6}>
+
+              <InfiniteScroll
+                pageStart={0}
+                loadMore={loadmore.bind(this)}
+                hasMore={isLoadmore}
+                loader={<div className="loader" key={0}>Loading ...</div>}  >
+              </InfiniteScroll>
+
             </Grid>
 
           </Container>
@@ -87,7 +117,7 @@ export default function Home({ allPosts }) {
 }
 
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const allPosts = await fetchApi()
   return {
     props: { allPosts, },

@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Icon from './icon'
 
 export default function AboutPage(props) {
-  console.log('props', props)
+  // console.log('props', props)
   const obj = props;
   function createMarkup() {
     return { __html: obj.content };
@@ -13,13 +13,14 @@ export default function AboutPage(props) {
   function NumberList(props) {
     const numbers = props.numbers;
     const listItems = numbers.map((number) =>
-
-      <li key={number.toString()}>
+      <div key={number.toString()}>
         {number}
-      </li>
+      </div>
     );
+    // let tag = numbers.map((item) => item)
+    // console.log('taggg', tag)
     return (
-      <ul>{listItems}</ul>
+      <p>{listItems}</p>
     );
   }
 
@@ -57,7 +58,7 @@ export default function AboutPage(props) {
 }
 
 export async function getServerSideProps() {
-  var rs = await fetch(`http://localhost/getbyid/5ef44cb20f9b8a8a90ec3513`);
+  var rs = await fetch(`http://localhost/getbyid/5f28323b8724bc53eca264b9`);
   var responjson = await rs.json()
   console.log('rs1111', responjson)
   return { props: responjson[0] }

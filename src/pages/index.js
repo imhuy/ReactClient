@@ -1,6 +1,7 @@
 import React, { Component, useEffect, useState } from 'react';
 import { Button, Card, CardMedia, Container, Grid, Paper, Typography } from '@material-ui/core';
-import InfiniteScroll from 'react-infinite-scroller';
+import Scroller from '../components/Scroller';
+//  import InfiniteScroll from 'react-infinite-scroller';
 import { fetchApi } from '../lib/api';
 import Header from '../components/Header';
 import styles from '../../styles';
@@ -13,7 +14,7 @@ export default function Home({ allPosts }) {
 
   useEffect(() => {
 
-    loadmore();
+    // loadmore();
   }, ['iddd']);
 
   async function loadmore(page) {
@@ -28,7 +29,7 @@ export default function Home({ allPosts }) {
     if (itemResponse === null || itemResponse.length === 0) {
       setLoadmore(false)
     }
-    setData(allPosts.concat(itemResponse))
+    setData(data.concat(itemResponse))
     // this.setState({ data: this.state.data.concat(itemResponse) })
   }
 
@@ -100,12 +101,12 @@ export default function Home({ allPosts }) {
 
             <Grid container spacing={6}>
 
-              <InfiniteScroll
+              <Scroller
                 pageStart={0}
                 loadMore={loadmore.bind(this)}
                 hasMore={isLoadmore}
                 loader={<div className="loader" key={0}>Loading ...</div>}  >
-              </InfiniteScroll>
+              </Scroller>
 
             </Grid>
 

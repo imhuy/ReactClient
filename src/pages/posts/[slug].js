@@ -3,8 +3,19 @@ import { Container } from '@material-ui/core';
 import Head from 'next/head'
 import Icon from './icon'
 
+function ProcessKey(key) {
+  var str = key;
+  var res = str.split(" ");
+  console.log('dev', res.toString())
+}
+
 export default function AboutPage(props) {
-  // console.log('props', props)
+
+  const { tag, category, title, content } = props
+
+  ProcessKey(title);
+
+  console.log('propsxxx', tag)
   const obj = props;
   function createMarkup() {
     return { __html: obj.content };

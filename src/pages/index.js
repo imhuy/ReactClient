@@ -6,6 +6,7 @@ import { fetchApi } from '../lib/api';
 import Header from '../components/Header';
 import styles from '../../styles';
 import Link from 'next/link';
+import Head from 'next/head'
 export default function Home({ allPosts }) {
 
 
@@ -36,6 +37,10 @@ export default function Home({ allPosts }) {
 
   return (
     <React.Fragment>
+      <Head>
+        <title>My Blog</title>
+        <meta name="description" content={'description' || ''} />
+      </Head>
       <main style={styles.main}>
         <div style={styles.content} >
           <Header />

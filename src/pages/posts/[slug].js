@@ -2,12 +2,13 @@ import Header from '../../components/Header'
 import { Container } from '@material-ui/core';
 import { useRouter } from 'next/router'
 import Head from 'next/head'
+import React, { Component, useEffect, useState } from 'react';
 import Icon from './icon'
 
 function ProcessMetaKey(key) {
   var str = key;
   var res = str.split(" ");
-  console.log('dev', res.toString())
+
 }
 
 
@@ -29,7 +30,7 @@ export default function AboutPage(props) {
 
   const { asPath } = useRouter()
 
-  console.log('propsx', asPath)
+  // console.log('propsx', props)
 
   const { tag, category, title, content } = props
 
@@ -38,7 +39,7 @@ export default function AboutPage(props) {
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>React Native · A framework for building native apps using React</title>
       </Head>
       <Header />
       <Container maxWidth='md' style={{ backgroundColor: '#fff' }} >
@@ -70,9 +71,19 @@ export default function AboutPage(props) {
   )
 }
 
-export async function getServerSideProps() {
-  var rs = await fetch(`http://localhost/getbyid/5f28323b8724bc53eca264b9`);
+async function getdata(query) {
+  let id = query.postId;
+  var rs = await fetch(`http://localhost/getbyid/${id}`);
+
   var responjson = await rs.json()
-  // console.log('rs1111', responjson)
-  return { props: responjson[0] }
+  return responjson[0]
+}
+
+export async function getServerSideProps(context) {
+  const { query } = context;
+  // console.log('contextxxxx', context)
+  console.log('queryzzxxx', query)
+
+  let data = await getdata(query);
+  return { props: data }
 }

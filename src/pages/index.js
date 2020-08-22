@@ -19,6 +19,7 @@ export default function Home({ allPosts }) {
   }, ['iddd']);
 
   async function loadmore(page) {
+    console.log('page', page  )
     var rs = await fetch(`http://localhost/post/${page}/6`);
 
     console.log('fetch424243')
@@ -38,7 +39,7 @@ export default function Home({ allPosts }) {
   return (
     <React.Fragment>
       <Head>
-        <title>My Blog</title>
+        <title>React Native · A framework for building native apps using React</title>
         <meta name="description" content={'description' || ''} />
       </Head>
       <main style={styles.main}>
@@ -80,7 +81,8 @@ export default function Home({ allPosts }) {
             <Grid container spacing={6}>
               {data.map((item, i) =>
 
-                <Link key={i} as={`/posts/${item.slug}`} href="/posts/[slug]">
+                // <Link as={`/posts/${item.slug}`} key={i} href={{ pathname: '/posts/[slug]', query: { id: item._id } }}>
+                <Link as={`/posts/${item.slug}?postId=${item._id}`} key={i} href={{ pathname: '/posts/[slug]', query: { postId: item._id } }}>
                   <Grid item xs={12} sm={6} md={4}>
 
                     <Paper elevation={0} style={styles.card} >

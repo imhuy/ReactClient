@@ -1,5 +1,3 @@
-
-
 export default {
     icon: {
         marginRight: 2
@@ -20,7 +18,9 @@ export default {
         backgroundColor: 'red'
     },
     h2: {
-        fontFamily: 'sans-serif', fontSize: 16, fontWeight: 'bold',
+        fontFamily: 'sans-serif',
+        fontSize: 16,
+        fontWeight: 'bold',
     },
     heroContent: {
         backgroundColor: '#fff',

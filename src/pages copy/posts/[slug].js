@@ -3,8 +3,7 @@ import { Container } from '@material-ui/core';
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import React, { Component, useEffect, useState } from 'react';
-import Icon from './icon';
-import PostBody from '../../components/postBody'
+import Icon from './icon'
 
 function ProcessMetaKey(key) {
   var str = key;
@@ -59,8 +58,7 @@ export default function AboutPage(props) {
           </div>
 
           <div>
-            {/* <p dangerouslySetInnerHTML={{ __html: content }} style={{ lineHeight: 2.5, textAlign: 'left', margin: 10, fontFamily: 'sans-serif' }} /> */}
-            <PostBody content={content} />
+            <p dangerouslySetInnerHTML={{ __html: content }} style={{ lineHeight: 2.5, textAlign: 'left', margin: 10, fontFamily: 'sans-serif' }} />
           </div>
           <div>
             <NumberList numbers={tag} />

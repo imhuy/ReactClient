@@ -5,6 +5,7 @@ import Head from 'next/head'
 import React, { Component, useEffect, useState } from 'react';
 import Icon from './icon';
 import PostBody from '../../components/postBody'
+const URL = 'https://nodes-erver.herokuapp.com'
 
 function ProcessMetaKey(key) {
   var str = key;
@@ -40,7 +41,7 @@ export default function AboutPage(props) {
   return (
     <>
       <Head>
-        <title>React Native · A framework for building native apps using React</title>
+        <title>{title}</title>
       </Head>
       <Header />
       <Container maxWidth='md' style={{ backgroundColor: '#fff' }} >
@@ -73,17 +74,14 @@ export default function AboutPage(props) {
 
 async function getdata(query) {
   let id = query.postId;
-  var rs = await fetch(`http://localhost/getbyid/${id}`);
+  var rs = await fetch(`${URL}/getbyid/${id}`);
 
   var responjson = await rs.json()
   return responjson[0]
 }
 
-export async function getServerSideProps(context) {
-  const { query } = context;
-  // console.log('contextxxxx', context)
-  console.log('queryzzxxx', query)
-
+export async function getServerSideProps({ query }) {
+  console.log(query)
   let data = await getdata(query);
   return { props: data }
 }

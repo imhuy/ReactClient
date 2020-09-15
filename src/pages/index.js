@@ -7,26 +7,17 @@ import Header from '../components/Header';
 import styles from '../../styles';
 import Link from 'next/link';
 import Head from 'next/head'
+const URL = 'https://nodes-erver.herokuapp.com'
 export default function Home({ allPosts }) {
 
 
   const [isLoadmore, setLoadmore] = useState(true)
   const [data, setData] = useState(allPosts)
 
-  useEffect(() => {
-
-    // loadmore();
-  }, ['iddd']);
 
   async function loadmore(page) {
     console.log('page', page)
-    var rs = await fetch(`http://localhost/post/${page}/6`);
-
-    console.log('fetch424243')
-    console.log(allPosts)
-
-    console.log('isLoadmore32342423')
-    console.log(isLoadmore)
+    var rs = await fetch(`${URL}/post/${page}/6`);
     var itemResponse = await rs.json();
     if (itemResponse === null || itemResponse.length === 0) {
       setLoadmore(false)
@@ -57,7 +48,7 @@ export default function Home({ allPosts }) {
                       <div >
                         <CardMedia
                           style={styles.cardMedia}
-                          image={item.image}
+                          // image={item.image}
                           title={item.title}
                         />
                       </div>

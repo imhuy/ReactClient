@@ -18,12 +18,11 @@
     "slate-react": "^0.57.2"
   },
   "scripts": {
-    "react": "react-scripts start",
-    "build": "next build",
-    "startx": "next start",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "start": "next"
+    "gcp-predeploy": "find ./build -name '\\[...*' -exec bash -c 'mv \"$1\" \"${1/.../@@@}\"' -- {} \\;",
+    "gcp-build": "find ./build -name '\\[@@@*' -exec bash -c 'mv \"$1\" \"${1/@@@/...}\"' -- {} \\;",
+    "build": "rm -rf ./build && NODE_ENV=production next build",
+    "start": "next start -p 8080",
+    "deploy": "npm run build && npm run gcp-predeploy && gcloud app deploy"
   },
   "eslintConfig": {
     "extends": "react-app"

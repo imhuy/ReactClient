@@ -1,63 +1,61 @@
-// import React, { Component } from 'react';
-// // import axios from 'axios';
+import React, { PureComponent } from 'react';
 
-// const URL = 'http://whois.net.vn/whois.php?domain='
-// class Footer extends Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             domain: [],
-//         };
-//     }
+export default class index extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.state = {
+        };
+    }
 
+    render() {
+        return (
+            <footer>
 
-//     async resdata() {
-//         var obj = {};
-//         var domain = [];
-//         // var id = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(2, 4);
-
-//         var id = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(2, 5);
-//         var Urlsend = URL + `${id}` + '.com'
-//         var data = await fetch(Urlsend)
-
-//         const respon = await data.json();
-//         if (respon === 1) {
-//             return [];
-//         }
-//         obj = { domain: id, ischeck: respon }
-//         domain.push(obj)
-//         return domain
-//     }
+                <div class="footer-links">
+                    <h5 class="footer-link--title">Quick Link</h5>
+                    <ul>
+                        <li><a class="footer-link" href="">News</a></li>
+                        <li><a class="footer-link" href="">Agency</a></li>
+                        <li><a class="footer-link" href="">Store</a></li>
+                        <li><a class="footer-link" href="">Grid</a></li>
+                    </ul>
+                </div>
 
 
-//     async componentDidMount() {
-//         var totaldoamin = [];
-//         setInterval(async () => {
-//             var domain = await this.resdata()
-//             domain.forEach((item) => {
-//                 totaldoamin.push(item)
-//             })
-//             this.setState({
-//                 domain: totaldoamin
-//             })
-//         }, 1000);
 
-//     }
+                <div class="footer-links">
+                    <h5 class="footer-link--title">Information</h5>
+                    <ul>
+                        <li><a class="footer-link" href="index.html">Home</a></li>
+                        <li><a class="footer-link" href="">Features</a></li>
+                        <li><a class="footer-link" href="about_us.html">About Us</a></li>
+                        <li><a class="footer-link" href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
 
-//     render() {
-//         return (
-//             <div>
-//                 {this.state.domain.map((item, i) =>
-//                     <ul key={i}>
-                        
-//                             <p> {item.domain}.com</p>
-                       
-//                     </ul>
-//                 )}
+                <div class="footer-contact">
+                    <h5 class="footer-link--title">Contact us</h5>
+                    <div class="contact-method">
+                        <p>72 Kangnam, 45 Opal Point Suite 391, UK</p>
+                        <p>contact@pisen.com</p>
+                    </div>
+                    <div class="social-contact"><a class="icon-btn" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a><a class="icon-btn" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a><a class="icon-btn" href="https://twitter.com/"><i class="fab fa-twitter"></i></a><a class="icon-btn" href="https://dribbble.com/"><i class="fab fa-dribbble"></i></a></div>
+                </div>
 
-//             </div>
-//         );
-//     }
-// }
-
-// export default Footer;
+                <div class="col-lg-4">
+                    <h5 class="footer-link--title">Subscribe To Our Mailing List </h5>
+                    <form action="" method="post">
+                        <div class="email-form">
+                            <input class="input-form" type="text" placeholder="Enter Your Mail" />
+                            <button> <i class="fas fa-paper-plane"></i></button>
+                        </div>
+                        <div class="read-policy">
+                            <input type="checkbox" id="read" />
+                            <label for="read">I've read and accept the Privacy Policy</label>
+                        </div>
+                    </form>
+                </div>
+            </footer>
+        );
+    }
+}

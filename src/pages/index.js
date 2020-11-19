@@ -1,12 +1,12 @@
-import React, { Component, useEffect, useState } from 'react';
-import { Button, Card, CardMedia, Container, Grid, Paper, Typography } from '@material-ui/core';
-import Scroller from '../components/Scroller';
-//  import InfiniteScroll from 'react-infinite-scroller';
-import { fetchApi } from '../lib/api';
-import Header from '../components/Header';
-import styles from '../../styles';
+import { CardMedia, Container, Grid, Paper, Typography } from '@material-ui/core';
+import Head from 'next/head';
 import Link from 'next/link';
-import Head from 'next/head'
+import React, { useState } from 'react';
+import styles from '../../styles';
+import Header from '../components/Header';
+import Scroller from '../components/Scroller';
+import Footer from '../components/Footer';
+import { fetchApi } from '../lib/api';
 const URL = 'https://nodes-erver.herokuapp.com'
 export default function Home({ allPosts }) {
 
@@ -79,6 +79,7 @@ export default function Home({ allPosts }) {
           </Container>
         </div>
       </main>
+      <Footer />
     </React.Fragment >
   )
 }

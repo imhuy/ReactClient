@@ -20,9 +20,7 @@ class Header extends Component {
     render() {
         return (
             <React.Fragment>
-
                 <Grid container style={{ backgroundColor: '#fcfcfc' }}  >
-
                     {data.map((item) => (
                         <Grid key={item.id} style={{ paddingRight: 25, }} >
                             <p>{item.title} </p>
